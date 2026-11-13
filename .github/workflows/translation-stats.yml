@@ -1,0 +1,18 @@
+name: Translation statistics
+on:
+  push:
+    paths:
+      - 'translation/**'
+      - 'scripts/stats.py'
+      - '.github/workflows/translation-stats.yml'
+  workflow_dispatch:
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Count translation words
+        run: python scripts/stats.py
